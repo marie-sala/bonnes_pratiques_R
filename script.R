@@ -9,6 +9,7 @@ library(yaml)
 library(renv)
 library(gt)
 
+source("get_data.R", encoding = "UTF-8")
 source("R/functions.R", encoding = "UTF-8")
 
 ## jeton API ----
@@ -39,11 +40,11 @@ df$sexe <- df$sexe %>%
 
 summarise(group_by(df, aged), n())
 
-fonction_de_stat_agregee(df %>% filter(sexe == "Homme") %>% pull(aged))
-fonction_de_stat_agregee(df %>% filter(sexe == "Femme") %>% pull(aged))
+calcul_stat_desc(df %>% filter(sexe == "Homme") %>% pull(aged))
+calcul_stat_desc(df %>% filter(sexe == "Femme") %>% pull(aged))
 
 stats_age <- df %>%
-  group_by(decennie = decennie_a_partir_annee(age)) %>%
+  group_by(decennie = decennie_a_partir_annee(aged)) %>%
   summarise(n())
 
 table_age <- gt::gt(stats_age) %>%
