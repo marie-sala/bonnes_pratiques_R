@@ -5,6 +5,12 @@ rm(list = ls())
 library(tidyverse)
 library(forcats)
 library(MASS)
+library(yaml)
+
+# JETON API ----
+
+api_token <- yaml::read_yaml("secrets.yaml")$jeton_api
+
 
 # DÉFINITION DE FONCTIONS ----
 
@@ -94,3 +100,4 @@ df3[, "cs1"] <- factor(df3$cs1)
 df3 %>%
   filter(couple == "2" & aged > 40 & aged < 60)
 MASS::polr(surf ~ cs1 + factor(ur), df3)
+

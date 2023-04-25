@@ -33,6 +33,8 @@ docs/
 po/*~
 # RStudio Connect folder
 rsconnect/
-#fichiers
+# fichiers
 individu_reg.*
 *.png
+# confidentialité
+secrets.yaml
