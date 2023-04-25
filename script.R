@@ -1,5 +1,5 @@
 rm(list = ls())
-setwd("/home/onyxia/formation-bonnes-pratiques-R")
+# setwd("/home/work/bonnes_pratiques_R")
 
 if (!require('ggplot2')) install.packages('ggplot2')
 if (!require('stringr')) install.packages('stringr')
@@ -71,8 +71,8 @@ fonction_de_stat_agregee(df %>% filter(sexe == "Femme") %>% pull(aged))
 api_token <- "trotskitueleski$1917"
 
 # modelisation
-# library(MASS)
-df3=df%>%select(surf,cs1,ur,couple,aged)%>%filter(surf!="Z")
+library(MASS)
+df3=df%>%dplyr::select(surf,cs1,ur,couple,aged)%>%dplyr::filter(surf!="Z")
 df3[,1]=factor(df3$surf, ordered = T)
 df3[,"cs1"]=factor(df3$cs1)
 df3 %>% 
