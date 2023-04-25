@@ -1,11 +1,5 @@
 rm(list = ls())
 
-if (!require("ggplot2")) install.packages("ggplot2")
-if (!require("stringr")) install.packages("stringr")
-if (!require("dplyr")) install.packages("dplyr")
-if (!require("tidyverse")) install.packages("tidyverse")
-
-
 library(tidyverse)
 
 # j'importe les données avec read_csv2 parce que c'est un csv avec des ;
