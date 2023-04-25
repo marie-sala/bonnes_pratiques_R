@@ -6,6 +6,8 @@ library(tidyverse)
 library(forcats)
 library(MASS)
 library(yaml)
+library(renv)
+library(gt)
 
 source("R/functions.R", encoding = "UTF-8")
 
@@ -39,6 +41,24 @@ summarise(group_by(df, aged), n())
 
 fonction_de_stat_agregee(df %>% filter(sexe == "Homme") %>% pull(aged))
 fonction_de_stat_agregee(df %>% filter(sexe == "Femme") %>% pull(aged))
+
+stats_age <- df %>%
+  group_by(decennie = decennie_a_partir_annee(age)) %>%
+  summarise(n())
+
+table_age <- gt::gt(stats_age) %>%
+  gt::tab_header(
+    title = "Distribution des âges dans notre population"
+  ) %>%
+  gt::fmt_number(
+    columns = `n()`,
+    sep_mark = " ",
+    decimals = 0
+  ) %>%
+  gt::cols_label(
+    decennie = "Tranche d'âge",
+    `n()` = "Population"
+  )
 
 # stats trans par statut
 df3 <- df %>%
